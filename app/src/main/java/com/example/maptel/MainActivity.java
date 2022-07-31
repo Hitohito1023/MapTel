@@ -4,10 +4,12 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.content.res.Resources;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
@@ -46,7 +48,17 @@ public class MainActivity extends AppCompatActivity {
             intent.setData(Uri.parse("tel:"+call));
             startActivity(intent);
         }else{
-            Toast.makeText(this, msg, Toast.LENGTH_LONG).show();
-        }
+//TextViewの作成
+            TextView textView = new TextView(getApplicationContext());
+            textView.setText(msg); //メッセージ
+            textView.setTextSize(25); //フォント
+            textView.setTextColor(Color.RED); //文字色
+            textView.setBackgroundColor(Color.BLACK); //背景色
+
+            //ToastにTextViewをセットして表示する
+            Toast toast = new Toast(getApplicationContext());
+            toast.setView(textView);
+            toast.setDuration(Toast.LENGTH_LONG);
+            toast.show();        }
     }
 }
